@@ -1,0 +1,226 @@
+/* ─── Custom styles that extend Tailwind ─── */
+
+/* Shimmer text effect on hero */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #6680f0 0%,
+    #a5b4fc 40%,
+    #6680f0 60%,
+    #a5b4fc 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Tag pills on hero card */
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(79, 99, 232, 0.3);
+  background: rgba(79, 99, 232, 0.1);
+  color: #93a8f5;
+}
+
+/* Smaller tag pills on project cards */
+.tag-sm {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: #64748b;
+}
+
+/* Section label */
+.section-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #6680f0;
+  margin-bottom: 0.75rem;
+}
+
+/* Section title */
+.section-title {
+  font-family: 'Rajdhani', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.1;
+  color: #f8fafc;
+}
+
+/* ─── Navbar scroll effect (JS adds .scrolled) ─── */
+#navbar.scrolled {
+  background: rgba(11, 13, 23, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ─── Scroll-reveal animation ─── */
+.reveal-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children of a section header */
+.section-header .section-label { transition-delay: 0.05s; }
+.section-header .section-title  { transition-delay: 0.12s; }
+
+/* ─── Active nav link highlight ─── */
+.nav-link.active,
+.mobile-link.active {
+  color: #ffffff;
+}
+
+/* ─── Custom scrollbar ─── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: #0b0d17; }
+::-webkit-scrollbar-thumb  { background: #1e2a7a; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #4f63e8; }
+
+/* ─── Footer social icons ─── */
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: #64748b;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+.social-icon:hover {
+  color: #ffffff;
+  border-color: rgba(79, 99, 232, 0.4);
+  background: rgba(79, 99, 232, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ─── Focus ring for accessibility ─── */
+:focus-visible {
+  outline: 2px solid #6680f0;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── Feast of Legends carousel ─── */
+.fol-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background 0.2s, width 0.2s;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.fol-dot.active {
+  background: #ffffff;
+  width: 16px;
+}
+
+/* Thumbnail strip */
+.fol-thumb {
+  width: 52px;
+  height: 34px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 0.55;
+  transition: opacity 0.2s, border-color 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+
+.fol-thumb:hover {
+  opacity: 0.85;
+  transform: scale(1.06);
+}
+
+.fol-thumb.active {
+  border-color: #34d399;
+  opacity: 1;
+}
+
+/* Hide scrollbar on thumb strip */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── Lightbox ─── */
+#fol-lightbox {
+  animation: lbFadeIn 0.18s ease both;
+}
+
+#fol-lightbox.hidden {
+  display: none !important;
+}
+
+@keyframes lbFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+#lb-img {
+  transition: opacity 0.15s ease;
+}
+
+#lb-img.loading {
+  opacity: 0;
+}
+
+.lb-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: background 0.2s, width 0.2s;
+  flex-shrink: 0;
+}
+
+.lb-dot.active {
+  background: #ffffff;
+  width: 18px;
+}
+
+/* ─── Smooth mobile menu transition ─── */
+#mobile-menu {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#mobile-menu.hidden {
+  display: none;
+}

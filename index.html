@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link rel="icon" href="images/LOGO.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:  '#f0f4ff',
+              100: '#e0e9ff',
+              300: '#93a8f5',
+              400: '#6680f0',
+              500: '#4f63e8',
+              600: '#3b4fd4',
+              700: '#2e3fb8',
+              800: '#1e2a7a',
+              900: '#111840',
+            },
+            surface: {
+              900: '#0b0d17',
+              800: '#10132a',
+              700: '#161a36',
+              600: '#1d2245',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Rajdhani', 'Inter', 'sans-serif'],
+          },
+          keyframes: {
+            fadeUp: {
+              '0%':   { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            pulse2: {
+              '0%, 100%': { opacity: '1' },
+              '50%':      { opacity: '0.4' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%':      { transform: 'translateY(-12px)' },
+            },
+            shimmer: {
+              '0%':   { backgroundPosition: '-200% center' },
+              '100%': { backgroundPosition:  '200% center' },
+            },
+          },
+          animation: {
+            'fade-up':     'fadeUp 0.7s ease both',
+            'fade-up-d1':  'fadeUp 0.7s 0.1s ease both',
+            'fade-up-d2':  'fadeUp 0.7s 0.2s ease both',
+            'fade-up-d3':  'fadeUp 0.7s 0.3s ease both',
+            'fade-up-d4':  'fadeUp 0.7s 0.4s ease both',
+            'pulse2':      'pulse2 3s ease-in-out infinite',
+            'float':       'float 4s ease-in-out infinite',
+            'shimmer':     'shimmer 3s linear infinite',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-surface-900 text-slate-200 font-sans antialiased overflow-x-hidden">
+
+  <!-- ─── BACKGROUND GRID ─── -->
+  <div class="fixed inset-0 -z-10 pointer-events-none">
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(79,99,232,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(79,99,232,0.04)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-brand-600/10 blur-[120px] rounded-full"></div>
+    <div class="absolute bottom-40 right-0 w-[500px] h-[400px] bg-brand-500/8 blur-[100px] rounded-full"></div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       NAV
+  ═════════════════════════════════════════ -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#hero" class="font-display font-bold text-xl text-white tracking-widest uppercase select-none">
+        <span class="text-brand-400">R</span>X
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+        <li><a href="#about"    class="nav-link hover:text-white transition-colors duration-200">About</a></li>
+        <li><a href="#projects" class="nav-link hover:text-white transition-colors duration-200">Projects</a></li>
+        <li><a href="#studio"   class="nav-link hover:text-white transition-colors duration-200">Studio</a></li>
+        <li><a href="#contact"  class="nav-link hover:text-white transition-colors duration-200">Contact</a></li>
+        <li>
+          <a href="https://github.com/rxsndr" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/40 text-brand-300 hover:border-brand-400 hover:text-white hover:bg-brand-500/10 transition-all duration-200">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </li>
+      </ul>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-btn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white focus:outline-none" aria-label="Toggle menu">
+        <svg id="icon-open"  class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-6 flex flex-col gap-4 text-sm font-medium text-slate-300 bg-surface-800/95 backdrop-blur border-t border-white/5">
+      <a href="#about"    class="mobile-link py-2 hover:text-white transition-colors">About</a>
+      <a href="#projects" class="mobile-link py-2 hover:text-white transition-colors">Projects</a>
+      <a href="#studio"   class="mobile-link py-2 hover:text-white transition-colors">Studio</a>
+      <a href="#contact"  class="mobile-link py-2 hover:text-white transition-colors">Contact</a>
+      <a href="https://github.com/rxsndr" target="_blank" rel="noopener noreferrer" class="py-2 text-brand-300 hover:text-white transition-colors">GitHub ↗</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ════════════════════════════════════════
+         HERO
+    ═════════════════════════════════════════ -->
+    <section id="hero" class="min-h-screen flex items-center pt-20">
+      <div class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Text -->
+        <div class="space-y-8">
+          <div class="animate-fade-up">
+            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-500/30 bg-brand-500/5 text-brand-300 text-xs font-medium tracking-widest uppercase">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse2"></span>
+              Aspiring Game Developer
+            </span>
+          </div>
+
+          <div class="animate-fade-up-d1">
+            <h1 class="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-tight text-white">
+              Rexsander<br/>
+              <span class="relative">
+                <span class="shimmer-text">Torres</span>
+              </span>
+            </h1>
+          </div>
+
+          <p class="animate-fade-up-d2 text-slate-400 text-lg leading-relaxed max-w-lg">
+            Crafting immersive interactive experiences through solid programming and efficient project management.
+          </p>
+
+          <div class="animate-fade-up-d3 flex flex-wrap gap-4">
+            <a href="#projects"
+               class="px-6 py-3 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-semibold transition-all duration-200 hover:shadow-[0_0_24px_rgba(79,99,232,0.5)] hover:-translate-y-0.5 active:translate-y-0">
+              View Projects
+            </a>
+            <a href="#contact"
+               class="px-6 py-3 rounded-full border border-white/15 text-slate-300 hover:border-white/40 hover:text-white font-semibold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0">
+              Get In Touch
+            </a>
+          </div>
+
+          <!-- Quick stats -->
+          <div class="animate-fade-up-d4 flex gap-8 pt-4 border-t border-white/5">
+            <div>
+              <span class="block text-2xl font-display font-bold text-white">2</span>
+              <span class="text-xs text-slate-500 uppercase tracking-wider">Projects</span>
+            </div>
+            <div class="w-px bg-white/5"></div>
+            <div>
+              <span class="block text-2xl font-display font-bold text-white">100%</span>
+              <span class="text-xs text-slate-500 uppercase tracking-wider">Passion</span>
+            </div>
+            <div class="w-px bg-white/5"></div>
+            <div>
+              <span class="block text-2xl font-display font-bold text-white">∞</span>
+              <span class="text-xs text-slate-500 uppercase tracking-wider">Curiosity</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar / decorative card -->
+        <div class="hidden lg:flex justify-center items-center animate-fade-up-d2">
+          <div class="relative">
+            <!-- Glow ring -->
+            <div class="absolute inset-0 rounded-2xl bg-brand-500/20 blur-2xl scale-110"></div>
+            <!-- Card -->
+            <div class="relative w-80 h-96 rounded-2xl border border-white/10 bg-surface-700/60 backdrop-blur overflow-hidden flex flex-col items-center justify-center gap-6 animate-float">
+              <!-- Avatar image -->
+              <div class="w-28 h-28 rounded-full ring-4 ring-brand-500/40 shadow-xl shadow-brand-500/30 overflow-hidden bg-gradient-to-br from-brand-400 to-brand-700 flex items-center justify-center flex-shrink-0">
+                <img id="avatar-img"
+                     src="images/profile.jpg"
+                     alt="Rexsander Torres"
+                     class="w-full h-full object-cover"
+                     onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';" />
+                <span id="avatar-fallback"
+                      class="font-display font-bold text-4xl text-white select-none hidden w-full h-full items-center justify-center">RT</span>
+              </div>
+              <div class="text-center px-6">
+                <p class="font-display font-bold text-2xl text-white">Rexsander Torres</p>
+                <p class="text-brand-300 text-sm mt-1">Game Developer</p>
+              </div>
+              <!-- Tags -->
+              <div class="flex flex-wrap justify-center gap-2 px-6">
+                <span class="tag">Unity</span>
+                <span class="tag">C#</span>
+                <span class="tag">Game Design</span>
+                <span class="tag">JavaScript</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         ABOUT
+    ═════════════════════════════════════════ -->
+    <section id="about" class="py-28">
+      <div class="max-w-6xl mx-auto px-6">
+
+        <div class="section-header mb-16">
+          <span class="section-label">About Me</span>
+          <h2 class="section-title">The Person<br/><span class="text-brand-400">Behind the Code</span></h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+
+          <!-- Objective card -->
+          <div class="reveal-card group relative p-8 rounded-2xl border border-white/8 bg-surface-700/40 backdrop-blur hover:border-brand-500/30 transition-all duration-300">
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="relative">
+              <div class="w-12 h-12 rounded-xl bg-brand-500/15 border border-brand-500/20 flex items-center justify-center mb-6">
+                <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+                </svg>
+              </div>
+              <h3 class="font-display font-bold text-xl text-white mb-4">Career Objective</h3>
+              <p class="text-slate-400 leading-relaxed text-[15px]">
+                "To develop innovative games by applying solid programming skills and efficient project management, while contributing to a collaborative team and delivering high-quality interactive experiences."
+              </p>
+            </div>
+          </div>
+
+          <!-- Skills / traits -->
+          <div class="space-y-5">
+
+            <div class="reveal-card skill-row group flex items-center gap-5 p-5 rounded-xl border border-white/8 bg-surface-700/30 hover:border-brand-500/25 hover:bg-surface-600/30 transition-all duration-200 cursor-default">
+              <div class="w-10 h-10 rounded-lg bg-brand-500/15 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">Programming</p>
+                <p class="text-slate-500 text-xs mt-0.5">Solid coding fundamentals & problem solving</p>
+              </div>
+              <div class="ml-auto">
+                <div class="skill-bar w-24 h-1.5 rounded-full bg-surface-600 overflow-hidden">
+                  <div class="h-full rounded-full bg-gradient-to-r from-brand-400 to-brand-600 w-[85%]"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="reveal-card skill-row group flex items-center gap-5 p-5 rounded-xl border border-white/8 bg-surface-700/30 hover:border-brand-500/25 hover:bg-surface-600/30 transition-all duration-200 cursor-default">
+              <div class="w-10 h-10 rounded-lg bg-brand-500/15 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">Team Collaboration</p>
+                <p class="text-slate-500 text-xs mt-0.5">Contributing & growing within a team</p>
+              </div>
+              <div class="ml-auto">
+                <div class="skill-bar w-24 h-1.5 rounded-full bg-surface-600 overflow-hidden">
+                  <div class="h-full rounded-full bg-gradient-to-r from-brand-400 to-brand-600 w-[90%]"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="reveal-card skill-row group flex items-center gap-5 p-5 rounded-xl border border-white/8 bg-surface-700/30 hover:border-brand-500/25 hover:bg-surface-600/30 transition-all duration-200 cursor-default">
+              <div class="w-10 h-10 rounded-lg bg-brand-500/15 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">Project Management</p>
+                <p class="text-slate-500 text-xs mt-0.5">Efficient delivery of quality work</p>
+              </div>
+              <div class="ml-auto">
+                <div class="skill-bar w-24 h-1.5 rounded-full bg-surface-600 overflow-hidden">
+                  <div class="h-full rounded-full bg-gradient-to-r from-brand-400 to-brand-600 w-[75%]"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         PROJECTS
+    ═════════════════════════════════════════ -->
+    <section id="projects" class="py-28">
+      <div class="max-w-6xl mx-auto px-6">
+
+        <div class="section-header mb-16">
+          <span class="section-label">Made Projects</span>
+          <h2 class="section-title">Games We<br/><span class="text-brand-400">Built</span></h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-8">
+
+          <!-- Project 1: Crownless Knight -->
+          <article class="reveal-card group relative flex flex-col rounded-2xl border border-white/8 bg-surface-700/40 backdrop-blur overflow-hidden hover:border-brand-500/35 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(79,99,232,0.15)]">
+            <!-- Screenshot Carousel Banner -->
+            <div class="ck-carousel relative h-52 bg-[#0b0d17] overflow-hidden cursor-pointer" id="ck-carousel" aria-label="Crownless Knight screenshot carousel">
+              <!-- Slides -->
+              <div class="ck-slides absolute inset-0 flex transition-transform duration-500 ease-in-out" id="ck-slides">
+                <img src="images/crownless-knight/ss1.png" alt="Crownless Knight – Main Menu" class="ck-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/crownless-knight/ss2.png" alt="Crownless Knight – Online lobby" class="ck-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/crownless-knight/ss3.png" alt="Crownless Knight – Wave 2 gameplay" class="ck-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/crownless-knight/ss4.png" alt="Crownless Knight – Shop screen" class="ck-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/crownless-knight/ss5.png" alt="Crownless Knight – Wave 4 horde" class="ck-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/crownless-knight/ss6.png" alt="Crownless Knight – Arena low-poly blockout" class="ck-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/crownless-knight/ss7.png" alt="Crownless Knight – Forest arena top view" class="ck-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/crownless-knight/ss8.png" alt="Crownless Knight – Cathedral ruins arena" class="ck-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+              </div>
+
+              <!-- Prev / Next buttons -->
+              <button class="ck-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 hover:bg-black/75 text-white flex items-center justify-center transition-all duration-150 opacity-0 group-hover:opacity-100 focus:opacity-100 z-10" aria-label="Previous screenshot">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+              </button>
+              <button class="ck-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 hover:bg-black/75 text-white flex items-center justify-center transition-all duration-150 opacity-0 group-hover:opacity-100 focus:opacity-100 z-10" aria-label="Next screenshot">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+              </button>
+
+              <!-- Dot indicators -->
+              <div class="ck-dots absolute bottom-2 inset-x-0 flex justify-center gap-1.5 z-10" id="ck-dots"></div>
+
+              <!-- Expand icon -->
+              <button class="ck-expand absolute top-2 right-2 w-7 h-7 rounded-md bg-black/50 hover:bg-black/75 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-150 z-10" aria-label="View fullscreen">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"/></svg>
+              </button>
+
+              <!-- Counter badge -->
+              <span class="ck-counter absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/50 text-white text-xs font-medium z-10" id="ck-counter">1 / 8</span>
+            </div>
+
+            <!-- Body -->
+            <div class="flex flex-col flex-1 p-7 gap-4">
+              <div>
+                <h3 class="font-display font-bold text-2xl text-white group-hover:text-brand-300 transition-colors duration-200">Crownless Knight</h3>
+                <p class="text-slate-500 text-sm mt-1">3D Action Wave Survival · Game Project</p>
+              </div>
+              <p class="text-slate-400 text-sm leading-relaxed flex-1">
+                A 3D wave-survival arena game with local and online multiplayer, in-game shop, low-poly art style, and dark fantasy mechanics across multiple handcrafted arenas.
+              </p>
+
+              <!-- Thumbnail strip -->
+              <div class="ck-thumbs flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide" id="ck-thumbs" aria-label="Screenshot thumbnails" role="list"></div>
+
+              <div class="flex items-center justify-between pt-4 border-t border-white/6">
+                <div class="flex gap-2">
+                  <span class="tag-sm">3D</span>
+                  <span class="tag-sm">Multiplayer</span>
+                  <span class="tag-sm">Game Dev</span>
+                </div>
+                <a href="https://github.com/rxsndr/Crownless-Knight" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 text-sm text-brand-300 hover:text-white font-medium transition-colors duration-200 group/link">
+                  View on GitHub
+                  <svg class="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Feast of Legends -->
+          <article class="reveal-card group relative flex flex-col rounded-2xl border border-white/8 bg-surface-700/40 backdrop-blur overflow-hidden hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(34,197,94,0.12)]">
+            <!-- Screenshot Carousel Banner -->
+            <div class="fol-carousel relative h-52 bg-[#1a0a0a] overflow-hidden cursor-pointer" id="fol-carousel" aria-label="Feast of Legends screenshot carousel">
+              <!-- Slides -->
+              <div class="fol-slides absolute inset-0 flex transition-transform duration-500 ease-in-out" id="fol-slides">
+                <img src="images/feast-of-legends/ss1.png" alt="Feast of Legends – Main Menu" class="fol-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/feast-of-legends/ss2.png" alt="Feast of Legends – Tutorial stage" class="fol-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/feast-of-legends/ss3.png" alt="Feast of Legends – Stage Clear" class="fol-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/feast-of-legends/ss4.png" alt="Feast of Legends – Lava dungeon combat" class="fol-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/feast-of-legends/ss5.png" alt="Feast of Legends – Fire enemy" class="fol-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/feast-of-legends/ss6.png" alt="Feast of Legends – Multiple enemies" class="fol-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/feast-of-legends/ss7.png" alt="Feast of Legends – Fireballs" class="fol-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/feast-of-legends/ss8.png" alt="Feast of Legends – Fireball storm" class="fol-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+                <img src="images/feast-of-legends/ss9.png" alt="Feast of Legends – Crescent fire" class="fol-slide w-full h-full object-cover flex-shrink-0" loading="lazy" />
+              </div>
+
+              <!-- Prev / Next buttons -->
+              <button class="fol-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 hover:bg-black/75 text-white flex items-center justify-center transition-all duration-150 opacity-0 group-hover:opacity-100 focus:opacity-100 z-10" aria-label="Previous screenshot">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+              </button>
+              <button class="fol-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 hover:bg-black/75 text-white flex items-center justify-center transition-all duration-150 opacity-0 group-hover:opacity-100 focus:opacity-100 z-10" aria-label="Next screenshot">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+              </button>
+
+              <!-- Dot indicators -->
+              <div class="fol-dots absolute bottom-2 inset-x-0 flex justify-center gap-1.5 z-10" id="fol-dots"></div>
+
+              <!-- Expand icon -->
+              <button class="fol-expand absolute top-2 right-2 w-7 h-7 rounded-md bg-black/50 hover:bg-black/75 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-150 z-10" aria-label="View fullscreen">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"/></svg>
+              </button>
+
+              <!-- Counter badge -->
+              <span class="fol-counter absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/50 text-white text-xs font-medium z-10" id="fol-counter">1 / 9</span>
+            </div>
+
+            <!-- Body -->
+            <div class="flex flex-col flex-1 p-7 gap-4">
+              <div>
+                <h3 class="font-display font-bold text-2xl text-white group-hover:text-emerald-400 transition-colors duration-200">Feast of Legends</h3>
+                <p class="text-slate-500 text-sm mt-1">2D Action Platformer · Game Project</p>
+              </div>
+              <p class="text-slate-400 text-sm leading-relaxed flex-1">
+                A 2D action platformer featuring combat mechanics, skill systems, and multi-stage level design with lava dungeons, fire enemies, and a picnic-themed overworld.
+              </p>
+
+              <!-- Thumbnail strip -->
+              <div class="fol-thumbs flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide" id="fol-thumbs" aria-label="Screenshot thumbnails" role="list"></div>
+
+              <div class="flex items-center justify-between pt-4 border-t border-white/6">
+                <div class="flex gap-2">
+                  <span class="tag-sm">2D Platformer</span>
+                  <span class="tag-sm">Action</span>
+                  <span class="tag-sm">Game Dev</span>
+                </div>
+                <a href="https://github.com/rxsndr/Feast-of-Legends" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 text-sm text-brand-300 hover:text-white font-medium transition-colors duration-200 group/link">
+                  View on GitHub
+                  <svg class="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- GitHub CTA -->
+        <div class="mt-12 text-center reveal-card">
+          <a href="https://github.com/rxsndr" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/12 bg-surface-700/30 hover:border-brand-500/40 hover:bg-surface-600/40 text-slate-300 hover:text-white font-medium transition-all duration-200 hover:-translate-y-0.5">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12z"/>
+            </svg>
+            See all repositories on GitHub
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         STUDIO
+    ═════════════════════════════════════════ -->
+    <section id="studio" class="py-28">
+      <div class="max-w-6xl mx-auto px-6">
+
+        <div class="section-header mb-16">
+          <span class="section-label">Team</span>
+          <h2 class="section-title">My<br/><span class="text-brand-400">Studio</span></h2>
+        </div>
+
+        <div class="reveal-card group relative rounded-2xl border border-white/8 bg-surface-700/40 backdrop-blur overflow-hidden hover:border-brand-500/25 transition-all duration-300">
+          <div class="grid md:grid-cols-2 gap-0">
+
+            <!-- Logo panel -->
+            <div class="relative flex items-center justify-center p-10 md:p-14 bg-gradient-to-br from-[#0d1220] to-surface-700/60 border-b md:border-b-0 md:border-r border-white/6">
+              <div class="absolute inset-0 bg-gradient-to-br from-brand-600/8 to-transparent"></div>
+              <div class="relative w-full max-w-xs">
+                <video src="images/videologo.mp4"
+                       autoplay loop muted playsinline
+                       class="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(79,99,232,0.25)]"
+                       onerror="this.style.display='none'; document.getElementById('studio-fallback').style.display='flex';">
+                </video>
+                <div id="studio-fallback"
+                     class="hidden items-center justify-center w-full h-32 rounded-xl border border-brand-500/20 bg-brand-500/5">
+                  <span class="font-display font-bold text-3xl text-brand-300 tracking-widest">FlowState Studio</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Info panel -->
+            <div class="flex flex-col justify-center gap-6 p-10 md:p-14">
+              <div>
+                <h3 class="font-display font-bold text-3xl text-white">FlowState Studio</h3>
+                <p class="text-brand-300 text-sm mt-1 font-medium tracking-wide">Independent Game Development Team</p>
+              </div>
+              <p class="text-slate-400 leading-relaxed text-[15px]">
+                FlowState Studio is an independent game development team focused on building engaging, polished games. Driven by creativity and a passion for interactive experiences, the studio brings together design, code, and storytelling.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="tag">Game Dev</span>
+                <span class="tag">Indie Studio</span>
+                <span class="tag">Unity</span>
+                <span class="tag">C#</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         CONTACT
+    ═════════════════════════════════════════ -->
+    <section id="contact" class="py-28">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+
+        <div class="section-header mb-12">
+          <span class="section-label">Contact</span>
+          <h2 class="section-title">Let's Work<br/><span class="text-brand-400">Together</span></h2>
+        </div>
+
+        <p class="reveal-card text-slate-400 text-lg leading-relaxed mb-12">
+          Have a project in mind or want to collaborate? I'm always open to new opportunities and conversations.
+        </p>
+
+        <div class="reveal-card flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="https://github.com/rxsndr" target="_blank" rel="noopener noreferrer"
+             class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-semibold transition-all duration-200 hover:shadow-[0_0_24px_rgba(79,99,232,0.5)] hover:-translate-y-0.5">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub Profile
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ═════════════════════════════════════════ -->
+  <footer class="border-t border-white/5 py-12">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col items-center gap-6">
+
+      <!-- Social icons -->
+      <div class="flex items-center gap-3">
+
+        <!-- GitHub -->
+        <a href="https://github.com/rxsndr" target="_blank" rel="noopener noreferrer"
+           class="social-icon" aria-label="GitHub">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+
+        <!-- Email -->
+        <a href="rexsander12@gmail.com"
+           class="social-icon" aria-label="Email">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+          </svg>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://web.facebook.com/rxsndr/" target="_blank" rel="noopener noreferrer"
+           class="social-icon" aria-label="Facebook">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+          </svg>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/rxsndrr_" target="_blank" rel="noopener noreferrer"
+           class="social-icon" aria-label="Instagram">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+        </a>
+
+      </div>
+
+      <!-- Bottom row -->
+      <div class="flex flex-col sm:flex-row items-center justify-center w-full gap-3 text-sm text-slate-600 border-t border-white/5 pt-6">
+        <span>© 2026 Rexsander Torres &amp; FlowState Studio. All rights reserved.</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════
+       LIGHTBOX MODAL
+  ═════════════════════════════════════════ -->
+  <div id="fol-lightbox" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm hidden" role="dialog" aria-modal="true" aria-label="Screenshot lightbox">
+    <button id="lb-close" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Close lightbox">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <button id="lb-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Previous">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+    </button>
+    <button id="lb-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Next">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+    </button>
+    <div class="flex flex-col items-center gap-3 w-full max-w-5xl px-16">
+      <img id="lb-img" src="" alt="" class="max-h-[80vh] max-w-full rounded-xl shadow-2xl object-contain" />
+      <p id="lb-caption" class="text-slate-300 text-sm"></p>
+      <div id="lb-dots" class="flex gap-1.5 mt-1"></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       CROWNLESS KNIGHT LIGHTBOX MODAL
+  ═════════════════════════════════════════ -->
+  <div id="ck-lightbox" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm hidden" role="dialog" aria-modal="true" aria-label="Crownless Knight screenshot lightbox">
+    <button id="cklb-close" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Close lightbox">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <button id="cklb-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Previous">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+    </button>
+    <button id="cklb-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Next">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+    </button>
+    <div class="flex flex-col items-center gap-3 w-full max-w-5xl px-16">
+      <img id="cklb-img" src="" alt="" class="max-h-[80vh] max-w-full rounded-xl shadow-2xl object-contain" />
+      <p id="cklb-caption" class="text-slate-300 text-sm"></p>
+      <div id="cklb-dots" class="flex gap-1.5 mt-1"></div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
